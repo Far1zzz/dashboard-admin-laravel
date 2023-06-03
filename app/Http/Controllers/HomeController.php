@@ -30,6 +30,7 @@ class HomeController extends Controller
             $jml_tamu_kominfo = DB::table('kominfos')->whereDate('created_at', $now)->count();
             $jml_tamu_setda = DB::table('sekdas')->whereDate('created_at', $now)->count();
             $jml_tamu_bupati = DB::table('bupatis')->whereDate('created_at', $now)->count();
+            $jml_tamu_wabup = DB::table('wabups')->whereDate('created_at', $now)->count();
 
             $role = auth()->user()->role;
 
@@ -40,6 +41,8 @@ class HomeController extends Controller
                     return view('tamu_setda.dash', compact('jml_tamu_setda'));
                 case 'bupati':
                     return view('tamu_bupati.dash', compact('jml_tamu_bupati'));
+                case 'wabup':
+                    return view('tamu_wabup.dash', compact('jml_tamu_wabup'));
                 default:
                     return view('home');
             }

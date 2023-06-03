@@ -3,6 +3,7 @@
 use App\Http\Controllers\BupatiController;
 use App\Http\Controllers\KominfoController;
 use App\Http\Controllers\SekdaController;
+use App\Http\Controllers\WabupController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -55,6 +56,17 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/fe-bupati', [BupatiController::class, 'dashboard'])->name('fe-bupati');
 });
 
+//wabup
+Route::middleware(['auth'])->group(function () {
+    Route::get('/tamu-wabup', [WabupController::class, 'show'])->name('show-wabup');
+    Route::get('/cetak-wabup', [WabupController::class, 'cetak'])->name('cetak-wabup');
+    Route::post('/cetak-wabup', [WabupController::class, 'cetak']);
+    Route::get('/cetak_all-wabup', [WabupController::class, 'cetak_all'])->name('cetak_all-wabup');
+    Route::get('/index-wabup', [WabupController::class, 'index'])->name('dashboard-wabup');
+    Route::get('/detail-wabup/{id}', [WabupController::class, 'detail'])->name('detail-wabup');
+    Route::get('/fe-wabup', [WabupController::class, 'dashboard'])->name('fe-wabup');
+});
+
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
@@ -66,3 +78,4 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/get-latest-data-bupati', [BupatiController::class, 'getLatestData']);
 Route::get('/get-latest-data-kominfo', [KominfoController::class, 'getLatestData']);
 Route::get('/get-latest-data-setda', [SekdaController::class, 'getLatestData']);
+Route::get('/get-latest-data-wabup', [SekdaController::class, 'getLatestData']);
