@@ -4,13 +4,10 @@
 
 @section('title', 'Riwayat Tamu')
 
-
 @section('breadcrumb')
     <i data-feather="chevron-right" class="breadcrumb__icon"></i>
-    <a href="#" class="breadcrumb--active">Riwayat Tamu Diskominfo-SP</a>
+    <a href="#" class="breadcrumb--active">Riwayat Tamu Wabup</a>
 @endsection
-
-
 
 @section('content')
     <div class="grid columns-12 gap-6 ">
@@ -49,7 +46,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <form method="POST" action="{{ route('cetak-kominfo') }}">
+                                            <form method="POST" action="{{ route('cetak-wabup') }}">
                                                 @csrf
                                                 <div class="modal-body grid columns-12 gap-4 gap-y-3">
                                                     <div class="g-col-12 g-col-sm-6">
@@ -111,7 +108,7 @@
                                             <td>{{ $item->noHp }}</td>
                                             <td>{{ $item->created_at }}</td>
                                             <td>{{ $item->statusPegawai }}</td>
-                                            <td><a href="{{ route('detail-kominfo', $item->id) }}"
+                                            <td><a href="{{ route('detail-wabup', $item->id) }}"
                                                     class="btn btn-sm btn-primary">Detail</a></td>
                                         </tr>
                                     @endforeach

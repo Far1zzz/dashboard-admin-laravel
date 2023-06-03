@@ -45,6 +45,14 @@
                     </a>
                 </li>
             @endif
+            @if (auth()->user()->role == 'wabup')
+                <li>
+                    <a class="menu" href="{{ route('home') }}">
+                        <div class="side-menu__icon"> <i data-feather="home"></i> </div>
+                        <div class="menu__title"> Dashboard wabup </div>
+                    </a>
+                </li>
+            @endif
             @if (auth()->user()->role == 'kominfo')
                 <li>
                     <a class="menu" href="{{ route('home') }}">
@@ -61,6 +69,7 @@
                     </a>
                 </li>
             @endif
+
             @if (auth()->user()->role == 'bupati')
                 <li>
                     <a class="menu" href="{{ route('show-bupati') }}">
@@ -82,6 +91,14 @@
                     <a class="menu" href="{{ route('show-setda') }}">
                         <div class="side-menu__icon"> <i data-feather="users"></i> </div>
                         <div class="menu__title"> Riwayat Tamu Setda </div>
+                    </a>
+                </li>
+            @endif
+            @if (auth()->user()->role == 'wabup')
+                <li>
+                    <a class="menu" href="{{ route('show-wabup') }}">
+                        <div class="side-menu__icon"> <i data-feather="users"></i> </div>
+                        <div class="menu__title"> Riwayat Tamu Wabup </div>
                     </a>
                 </li>
             @endif
@@ -152,13 +169,31 @@
                         </a>
                     </li>
                 @endif
+                @if (auth()->user()->role == 'wabup')
+                    <li>
+                        <a href="{{ route('home') }}" class="side-menu" data-target="#home">
+                            <div class="side-menu__icon"> <i data-feather="home"></i> </div>
+                            <div class="side-menu__title">
+                                Home Wabup
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('show-wabup') }}" class="side-menu" data-target="#riwayat-tamu">
+                            <div class="side-menu__icon"> <i data-feather="users"></i> </div>
+                            <div class="side-menu__title">
+                                Riwayat Tamu Wabup
+                            </div>
+                        </a>
+                    </li>
+                @endif
             </ul>
         </nav>
 
         <div class="content">
             <div class="top-bar">
-                <div class="-intro-x breadcrumb me-auto d-none d-sm-flex">
-                    <a class="side-menu" data-target="#home" href="{{ route('home') }}">Home</a>
+                <div class="-intro-x breadcrumb me-auto  d-sm-flex">
+                    <a href="{{ route('home') }}">Home</a>
                     @yield('breadcrumb')
                 </div>
 
