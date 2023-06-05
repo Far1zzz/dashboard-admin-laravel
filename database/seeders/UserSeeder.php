@@ -15,24 +15,24 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         $users = [
-            // [
-            //     'name' => 'Diskominfo-SP',
-            //     'email' => 'Admin.kominfo@gmail.com',
-            //     'role' => 'kominfo',
-            //     'password' => Hash::make('kominfo123')
-            // ],
-            // [
-            //     'name' => 'Sekretariat Daerah',
-            //     'email' => 'Admin.sekda@gmail.com',
-            //     'role' => 'sekda',
-            //     'password' => Hash::make('sekda123')
-            // ],
-            // [
-            //     'name' => 'Bupati',
-            //     'email' => 'Admin.bupati@gmail.com',
-            //     'role' => 'bupati',
-            //     'password' => Hash::make('bupati123')
-            // ],
+            [
+                'name' => 'Diskominfo-SP',
+                'email' => 'Admin.kominfo@gmail.com',
+                'role' => 'kominfo',
+                'password' => Hash::make('kominfo123')
+            ],
+            [
+                'name' => 'Sekretariat Daerah',
+                'email' => 'Admin.sekda@gmail.com',
+                'role' => 'sekda',
+                'password' => Hash::make('sekda123')
+            ],
+            [
+                'name' => 'Bupati',
+                'email' => 'Admin.bupati@gmail.com',
+                'role' => 'bupati',
+                'password' => Hash::make('bupati123')
+            ],
             [
                 'name' => 'Admin Wakil Bupati',
                 'email' => 'Admin.wabup@gmail.com',
