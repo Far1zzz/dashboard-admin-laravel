@@ -110,7 +110,7 @@
         <nav class="side-nav">
             <a href="#" class="intro-x d-flex align-items-center ps-5 pt-4">
                 <img alt="image" class="w-8" src="{{ asset('images/banyuasin.png') }}">
-                <span class="d-none d-xl-block text-white fs-lg ms-3">Admin Buku Tamu </span>
+                <span class="d-none d-xl-block text-white fs-lg ms-3"><i>Admin Buku Tamu</i> </span>
             </a>
             <div class="side-nav__devider my-4"></div>
             <ul>
@@ -290,6 +290,7 @@
                 $('#myTable').DataTable();
             });
         </script>
+
 
 </body>
 

@@ -61,9 +61,9 @@
 
                         {{-- <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label> --}}
                         <div class="intro-x mt-8">
-                            @if ($errors->has('loginError'))
+                            @if (session()->has('loginError'))
                                 <div id="flash-message" class="text-danger">
-                                    {{ $errors->first('email') }}
+                                    {{ session()->get('loginError') }}
                                 </div>
                             @endif
                             @if (session()->has('info'))

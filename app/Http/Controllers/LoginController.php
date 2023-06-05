@@ -33,8 +33,8 @@ class LoginController extends Controller
             'email' => 'required',
             'password' => 'required|min:5',
         ], [
-            'email.required' => 'Email harus diisi',
-            'password.required' => 'Password harus diisi',
+            'email.required' => "Email harus diisi",
+            'password.required' => "Password harus diisi",
         ]);
 
         if (Auth::attempt($credentials)) {
@@ -49,8 +49,9 @@ class LoginController extends Controller
             } elseif ($user->role === 'wabup') {
                 return redirect()->route('tamu_wabup.riwayat_user');
             }
+        } else {
+            return back()->with(['loginError' => 'Gagal Login']);
         }
-        return back()->withErrors(['loginError' => 'Gagal Login'])->withInput($request->only('email'));
     }
 
     public function logout(Request $request)
