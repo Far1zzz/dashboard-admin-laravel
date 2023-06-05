@@ -8,9 +8,20 @@ use Illuminate\Support\Facades\Auth;
 class LoginController extends Controller
 {
     public function index()
+
     {
         if (Auth::check()) {
-            return redirect('tamu.riwayat_user');
+            $user = Auth::user();
+
+            if ($user->role === 'kominfo') {
+                return redirect()->route('tamu_kominfo.riwayat_user');
+            } elseif ($user->role === 'sekda') {
+                return redirect()->route('tamu_setda.riwayat_user');
+            } elseif ($user->role === 'bupati') {
+                return redirect()->route('tamu_bupati.riwayat_user');
+            } elseif ($user->role === 'wabup') {
+                return redirect()->route('tamu_wabup.riwayat_user');
+            }
         } else {
             return view('auth.login');
         }
@@ -18,18 +29,28 @@ class LoginController extends Controller
 
     public function authenticate(Request $request)
     {
-        $data = [
-            'email' => $request->input('email'),
-            'password' => $request->input('password'),
-        ];
+        $credentials = $request->validate([
+            'email' => 'required',
+            'password' => 'required|min:5',
+        ], [
+            'email.required' => 'Email harus diisi',
+            'password.required' => 'Password harus diisi',
+        ]);
 
-        if (Auth::attempt($data)) {
+        if (Auth::attempt($credentials)) {
+            $user = Auth::user();
 
-            return redirect('tamu_kominfo.riwayat_user');
-        } else {
-
-            return back()->with('loginError', 'Login failed');
+            if ($user->role === 'kominfo') {
+                return redirect()->route('tamu_kominfo.riwayat_user');
+            } elseif ($user->role === 'sekda') {
+                return redirect()->route('tamu_setda.riwayat_user');
+            } elseif ($user->role === 'bupati') {
+                return redirect()->route('tamu_bupati.riwayat_user');
+            } elseif ($user->role === 'wabup') {
+                return redirect()->route('tamu_wabup.riwayat_user');
+            }
         }
+        return back()->withErrors(['loginError' => 'Gagal Login'])->withInput($request->only('email'));
     }
 
     public function logout(Request $request)
@@ -50,6 +71,6 @@ class LoginController extends Controller
         }
 
         // Jika pengguna sudah login, arahkan ke rute yang diinginkan
-        return '/'; // Ganti dengan rute yang diinginkan
+        return '/home'; // Ganti dengan rute yang diinginkan
     }
 }

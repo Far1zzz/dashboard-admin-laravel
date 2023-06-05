@@ -14,6 +14,7 @@
 
     <!-- BEGIN: CSS Assets-->
     <link rel="stylesheet" href="{{ asset('template/dist/css/app.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets_admin/vendor/css/core.css') }}" />
     <!-- END: CSS Assets-->
 </head>
 <!-- END: Head -->
@@ -24,9 +25,9 @@
             <!-- BEGIN: Login Info -->
             <div class="g-col-2 g-col-xl-1 d-none d-xl-flex flex-column min-vh-screen">
                 <a href="#" class="-intro-x d-flex align-items-center pt-5">
-                    <img alt="Rubick Bootstrap HTML Admin Template" class="w-6"
+                    <img alt="Rubick Bootstrap HTML Admin Template" class="w-10"
                         src="{{ asset('template/dist/images/LOGO_BANYUASIN.png') }}">
-                    <span class="text-white fs-lg ms-3">Kabupaten Banyuasin</span>
+                    <span class="text-white fs-2xl ms-3">Kabupaten Banyuasin</span>
                 </a>
                 <div class="my-auto">
                     <img alt="Rubick Bootstrap HTML Admin Template" class="-intro-x w-3/4 mt-n16"
@@ -48,35 +49,45 @@
                     <h2 class="intro-x fw-bold fs-2xl fs-xl-3xl text-center text-xl-start">
                         Sign In
                     </h2>
+
+
                     <div class="intro-x mt-2 text-gray-500 d-xl-none text-center">Selamat Datang Di Dashboard Admin
                         E-Tamu Sekretariat Daerah</div>
+                    {{-- {{ dd(session('loginError')) }} --}}
+
+
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
                         {{-- <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label> --}}
-                        <div class="intro-x mt-8 ">
-
+                        <div class="intro-x mt-8">
+                            @if ($errors->has('loginError'))
+                                <div id="flash-message" class="text-danger">
+                                    {{ $errors->first('email') }}
+                                </div>
+                            @endif
+                            @if (session()->has('info'))
+                                <div id="flash-message" class="text-danger">
+                                    {{ session()->get('info') }}
+                                </div>
+                            @endif
                             <input id="email" type="email" placeholder="Email"
                                 class="intro-x login__input form-control py-3 px-4 border-gray-300 d-block mb-2"
-                                @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}"
-                                required autocomplete="email" autofocus>
+                                name="email" value="{{ old('email') }}" autocomplete="email" autofocus>
 
-                            @error('email')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-
-                            <input id="password" type="password" placeholder="password"
+                            <input id="password" type="password" placeholder="Password"
                                 class="intro-x login__input form-control py-3 px-4 border-gray-300 d-block"
-                                @error('password') is-invalid @enderror" name="password" required
-                                autocomplete="current-password">
+                                name="password" autocomplete="current-password">
+                            @if ($errors->any())
+                                <span class="text-danger">
+                                    <strong>
+                                        @foreach ($errors->all() as $error)
+                                            {{ $error }} <br>
+                                        @endforeach
+                                    </strong>
 
-                            @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
                                 </span>
-                            @enderror
+                            @endif
                         </div>
 
                         <div class="intro-x d-flex text-gray-700 dark-text-gray-600 fs-xs fs-sm-sm mt-4">
@@ -91,7 +102,7 @@
                             <a href="#">Forgot Password?</a>
                         </div>
                         <div class="intro-x mt-5 mt-xl-8 text-center text-xl-start">
-                            <button type="submit" class="btn btn-danger py-3 px-4 w-full w-xl-32 me-xl-3 align-top">
+                            <button type="submit" class="btn btn-danger py-2 px-2 w-full w-xl-32 me-xl-3 align-top">
                                 {{ __('Login') }}
                             </button>
                         </div>

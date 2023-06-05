@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BupatiController;
 use App\Http\Controllers\KominfoController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SekdaController;
 use App\Http\Controllers\WabupController;
 use Illuminate\Support\Facades\Auth;
@@ -19,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login');
 });
 
 
