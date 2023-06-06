@@ -12,7 +12,7 @@
 
                 <div class=" mb-3 grid g-col-12 gap-sm-10 intro-y">
                     <div
-                        class="g-col-12 g-col-sm-6 g-col-md-4 py-6 ps-sm-5 ps-md-0 ps-lg-5 position-relative text-center text-sm-start">
+                        class="g-col-12 g-col-sm-6 g-col-md-4 py-1 ps-sm-5 ps-md-0 ps-lg-5 position-relative text-center text-sm-start">
 
                         <div class="fs-sm fs-xxl-base fw-medium mb-n1"> <span
                                 class="text-black dark-text-black fw-normal">Selamat Datang</span> {{ auth()->user()->name }}
