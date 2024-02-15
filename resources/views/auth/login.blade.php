@@ -71,23 +71,20 @@
                                     {{ session()->get('info') }}
                                 </div>
                             @endif
-                            <input id="email" type="email" placeholder="Email"
-                                class="intro-x login__input form-control py-3 px-4 border-gray-300 d-block mb-2"
-                                name="email" value="{{ old('email') }}" autocomplete="email" autofocus>
+                            <input type="text" class="form-control" name="login" id="login"
+                                placeholder="Email or Username" aria-label="Email" aria-describedby="email-addon"
+                                @if (Cookie::has('login')) value="{{ Cookie::get('login') }}" @endif>
+                            @error('login')
+                                <p class="text-danger text-xs mt-2">{{ $message }}</p>
+                            @enderror
 
-                            <input id="password" type="password" placeholder="Password"
-                                class="intro-x login__input form-control py-3 px-4 border-gray-300 d-block"
-                                name="password" autocomplete="current-password">
-                            @if ($errors->any())
-                                <span class="text-danger">
-                                    <strong>
-                                        @foreach ($errors->all() as $error)
-                                            {{ $error }} <br>
-                                        @endforeach
-                                    </strong>
-
-                                </span>
-                            @endif
+                            <input type="password" class="form-control"
+                                @if (Cookie::has('password')) value="{{ Cookie::get('password') }}" @endif
+                                name="password" id="password" placeholder="Password" aria-label="Password"
+                                aria-describedby="password-addon">
+                            @error('password')
+                                <p class="text-danger text-xs mt-2">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <div class="intro-x d-flex text-gray-700 dark-text-gray-600 fs-xs fs-sm-sm mt-4">

@@ -83,7 +83,7 @@
                     </div>
                     <div class="intro-y overflow-auto overflow-lg-visible mt-8 mt-sm-0">
                         <div class="table-responsive p-4">
-                            <table class="table table-report mt-sm-2" id="myTable">
+                            <table class="table table-report mt-sm-2"   >
                                 <thead>
                                     <tr>
                                         <th>No</th>
